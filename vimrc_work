@@ -1,0 +1,172 @@
+" Install YouCompleteMe !!!!
+" Figure out tmux pasting
+
+
+set nocompatible
+filetype off
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" Plugin 'something.vim'
+" call vundle#end()
+
+set wildmode=list:full
+set wildmenu
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set number
+set relativenumber
+set matchpairs+=<:>,':',":"
+set nowrap
+set undofile
+set undodir=~/.vimlocal/undo
+set dir=~/.vimlocal/swap
+set scrolloff=4
+set sidescrolloff=8
+set virtualedit=onemore,block
+set title
+set tabstop=4
+
+" No Ex mode
+map q: <Nop>
+nnoremap Q <Nop>
+
+"other
+set colorcolumn=+1
+highlight ColorColumn ctermbg=darkgrey
+let mapleader=','
+let g:mapleader=','
+
+if &diff
+	set cursorline
+	map ] ]c
+	map [ [c
+	map <leader>1 :diffget LOCAL<CR>
+	map <leader>2 :diffget BASE<CR>
+	map <leader>1 :diffget REMOTE<CR>
+endif
+
+vnoremap / /\v
+nnoremap / /\v
+vnoremap ? ?\v
+nnoremap ? ?\v
+imap jk <Esc>
+
+" Splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+" Edit the path
+" set path+=**
+set path=**
+
+let g:netrw_banner=0         " disable banner
+let g:netrw_browse_split=4   " open in prior window
+let g:netrw_altv=1           " open splits to the right
+let g:netrw_listtype=3       " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S+'
+
+" Snippets
+nnoremap ,html :-1read $HOME/.vim/snippet/skeleton.html<CR>
+nnoremap ,cpp :-1read $HOME/.vim/snippet/skeleton.cpp<CR>
+nnoremap ,cfor :-1read $HOME/.vim/snippet/skeleton.cfor<CR>
+
+nnoremap Y $y
+" colorscheme liquidcarbon
+"
+
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprevious<CR>
+
+" From otherss
+
+" Operate on screen line instead of file lines
+nnoremap j gj
+nnoremap k gk
+
+" Press * or # to search for current selection
+vnoremap <silent> * y:let @/ = @"<CR>n:set hlsearch<CR>
+vnoremap <silent> # y:let @? = @"<CR>n:set hlsearch<CR>
+
+" replay @q for each line of visual selection
+vnoremap Q :normal @q<CR>
+
+" qq to record Q to replay
+nnoremap Q @q
+
+" easier indent visual blocks
+vnoremap > >gv
+vnoremap < <gv
+
+" use system clipboard
+set clipboard=
+
+" case insensitive filename completion
+set wic
+
+set list " show whitespace
+set listchars=trail:
+
+set statusline=[%n\|%{winnr()}]  " buffer number and window index
+set statusline+=\ %<%.99f        " tail of filename
+set statusline+=\ %m             " modified flag
+set statusline+=[
+set statusline+=%{&ff}           " file format
+set statusline+=%R               " read only flag
+set statusline+=%Y               " filetype
+set statusline+=]
+set statusline+=%=               " left right separator
+" set statusline+=%-16(%{fugitive#statusline()}%) " git branch
+set statusline+=%l/%LL           " cursor line/total lines
+set statusline+=\ %c%VC          " cursor column
+set statusline+=\ %P             " percent through file
+
+set laststatus=2   " always show status line
+set ai             " auto indent
+set si             " smart indent
+set smarttab       " use shiftwidth to tab at beginning of line
+set cindent        " c style indenting
+set tabstop=2      " tab spaciing (next setting for unity)
+set softtabstop=2
+set shiftwidth=2
+set autowrite      " save file when shell/cmd are run
+set autoread
+set wildmenu
+set wildmode=full  " zsh style command completion
+set autoread       " no prompt for file change outside vim
+set swapfile       " keep swap files
+
+set wildignore+=tags    " ignore tabs when globbing
+set wildignore+=tmp/**  " also tmp file
+set wildignore+=public/uploads/**   
+set wildignore+=public/images/**    
+set wildignore+=vendor/**    
+set isk+=_,$,@,%,#      " none of these should be word dividers
+set wildignore+= .git,*.o,tmp/**,vendor/rails/**
+
+nnoremap <left> <c-w>>
+nnoremap <right> <c-w><
+nnoremap <up> <c-w>+
+nnoremap <down> <c-w>-
+
+let g:AutoPairs={'(':')','[':']','{':'}',"'":"'",'"':'"'}
+imap {<CR> {<ESC>o}<ESC>%a<CR>
+
+set foldmethod=indent
+nnoremap <Space> za
+vnoremap <Space> za
+
+
+""""""""""""""""""""""""""""""""""""
+" all plugins before these lines:
+"
+
+filetype plugin indent on
+syntax on
