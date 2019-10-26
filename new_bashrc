@@ -1,0 +1,74 @@
+# .bashrc
+
+HISTSIZE=
+HISTFILESIZE=
+export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]:\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
+# User specific aliases and functions
+alias c='clear'
+
+# ls
+alias ls='ls -hF'
+alias lr='ls -R'                    # recursive ls
+alias ll='ls -l'
+alias la='ll -A'
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+alias lm='la | more'
+alias l='ls'
+
+# modified commands
+alias grep='grep --color=auto'
+alias more='less'
+alias df='df -h'
+alias du='du -c -h'
+alias mkdir='mkdir -p -v'
+alias nano='nano -w'
+alias ping='ping -c 5'
+alias up='cd ..'
+alias u='up'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+
+# new commands
+alias da='date "+%A, %B %d, %Y [%T]"'
+alias du1='du --max-depth=1'
+alias hist='history | grep $1'      # requires an argument
+alias psg='ps -Af | grep $1'         # requires an argument
+alias fhn='find . -iname'
+
+alias g='git status'
+
+# Sudo commands
+alias svim='sudo vim'
+
+# Git aliases
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias gco='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+
+alias got='git '
+alias get='git '
+
+alias tl='tmux ls'
+alias ta='tmux attach -t'
+alias tn='tmux new-session -s'
+
+# alias pytags='ctags --languages=python --fields=+l --python-kinds=-iv -R .'
+# alias pytags='ctags --languages=python --fields=+l --python-kinds=-iv -R --exclude=build .'
+alias pytags="ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags ./ \$(python -c \"import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))\")"
+djvim() {
+     vim "+cd $1" "+TlistAddFilesRecursive . [^_]*py\|*html\|*css" +TlistOpen
+}
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
