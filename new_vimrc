@@ -30,8 +30,8 @@ set mouse=v " r
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 "   
-" Plugin 'Valloric/YouCompleteMe.vim'
-Plugin 'YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe.vim'
+" Plugin 'YouCompleteMe'
 "   " The following are examples of different formats supported.
 "   " Keep Plugin commands between vundle#begin/end.
 "   " plugin on GitHub repo
@@ -67,6 +67,9 @@ Plugin 'honza/vim-snippets'
 
 " Quickfix changes
 Plugin 'yssl/QFEnter'
+
+" colorscheme
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 " the glaive#Install() should go after the "call vundle#end()"
@@ -245,6 +248,9 @@ nnoremap Y $y
 " Operate on screen line instead of file lines
 nnoremap j gj
 nnoremap k gk
+
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
 
 " Press * or # to search for current selection
 vnoremap <silent> * y:let @/ = @"<CR>n:set hlsearch<CR>
