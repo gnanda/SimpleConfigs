@@ -1,4 +1,9 @@
 " Install YouCompleteMe !!!!
+" Other things to install:
+" QFEnter/        Vundle.vim/     YouCompleteMe/  syntastic/      ultisnips/
+" vim-codefmt/    vim-flake8/     vim-fugitive/   vim-glaive/     vim-maktaba/
+" vim-snippets/
+" sensible/       unimpaired/
 " Figure out tmux pasting
 
 scriptencoding utf-8
@@ -60,6 +65,9 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
+" Quickfix changes
+Plugin 'yssl/QFEnter'
+
 call vundle#end()            " required
 " the glaive#Install() should go after the "call vundle#end()"
 call glaive#Install()
@@ -90,6 +98,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{FugitiveStatusline()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
