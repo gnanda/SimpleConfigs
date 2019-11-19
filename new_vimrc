@@ -71,6 +71,9 @@ Plugin 'yssl/QFEnter'
 " colorscheme
 Plugin 'morhetz/gruvbox'
 
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+
 call vundle#end()            " required
 " the glaive#Install() should go after the "call vundle#end()"
 call glaive#Install()
@@ -324,7 +327,21 @@ set foldmethod=indent
 nnoremap <Space> za
 vnoremap <Space> za
 
+nnoremap Y y$
 " nnoremap <c-m> :noh<cr>
+set mouse=a
+nnoremap <C-LeftMouse> <LeftMouse>:YcmCompleter GoToReferences<CR>
+:vmap <C-C> "+y
+
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
+map <F7> :NERDTreeToggle<CR>
+" autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 com! FormatJSON %!python -m json.tool
 
